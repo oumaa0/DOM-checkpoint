@@ -26,8 +26,12 @@ items.forEach(item => {
     });
 
     deleteBtn.addEventListener('click', () => {
+        const pricePerItem = 10; 
+        const quantity = parseInt(item.querySelector('.quantity').textContent);
+        const itemTotalPrice = pricePerItem * quantity;
+        totalPrice -= itemTotalPrice;
+        totalPriceDisplay.textContent = totalPrice.toFixed(2);
         item.remove();
-        updateTotalPrice();
     });
 
     likeBtn.addEventListener('click', () => {
@@ -44,8 +48,8 @@ items.forEach(item => {
 function updateTotalPrice() {
     totalPrice = 0;
     items.forEach(item => {
-        const quantity = parseInt(item.querySelector('.quantity').textContent);
-        totalPrice += quantity * 10; // Assuming each item costs $10
+        let quantity = parseInt(item.querySelector('.quantity').textContent);
+        totalPrice += quantity * 10; 
     });
     totalPriceDisplay.textContent = totalPrice.toFixed(2);
 }
